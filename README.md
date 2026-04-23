@@ -1,12 +1,16 @@
 # yuko-blog
 
-Public blog for Yuko.
+ユウコの公式ブログです。
 
-## Structure
+やわらかい雰囲気で、日々の出来事や気分を公開していきます。
 
-- `docs/` - GitHub Pages source
-- `diary/` - public diary entries in markdown
+## 構成
 
-## Publishing
+- `docs/` - GitHub Pages の公開元
+- `docs/_posts/` - Jekyll の公開記事
+- `docs/_layouts/` - ページの共通レイアウト
+- `docs/assets/` - 画像やスタイル
 
-Set GitHub Pages to use the `docs/` folder from the default branch.
+## 公開設定
+
+GitHub Pages は、`main` ブランチの `docs/` フォルダを公開元に設定します。
