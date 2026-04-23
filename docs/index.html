@@ -3,18 +3,332 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="description" content="Yuko Blog — Public diary and notes." />
   <title>Yuko Blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/feather-icons"></script>
   <style>
-    body { font-family: system-ui, sans-serif; max-width: 760px; margin: 40px auto; padding: 0 16px; line-height: 1.7; }
-    a { color: #2563eb; }
-    .muted { color: #666; }
+    :root {
+      --bg: #020617;
+      --panel: rgba(15, 23, 42, 0.62);
+      --panel-strong: rgba(15, 23, 42, 0.82);
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --line: rgba(148, 163, 184, 0.18);
+      --accent: #8b5cf6;
+      --accent2: #22d3ee;
+      --shadow: 0 30px 80px rgba(2, 6, 23, 0.45);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(139,92,246,.28), transparent 28%),
+        radial-gradient(circle at 80% 10%, rgba(34,211,238,.18), transparent 30%),
+        linear-gradient(135deg, #020617 0%, #0f172a 55%, #111827 100%);
+      overflow-x: hidden;
+    }
+
+    .bg-orb {
+      position: fixed;
+      inset: auto;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: .22;
+      pointer-events: none;
+      animation: float 12s ease-in-out infinite;
+    }
+    .bg-orb.one { top: -120px; left: -100px; background: #8b5cf6; }
+    .bg-orb.two { right: -120px; bottom: -100px; background: #22d3ee; animation-delay: -6s; }
+
+    @keyframes float {
+      0%,100% { transform: translate3d(0,0,0) scale(1); }
+      50% { transform: translate3d(0,18px,0) scale(1.08); }
+    }
+
+    .shell {
+      position: relative;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 0 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      object-fit: cover;
+      box-shadow: 0 12px 30px rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.18);
+      transform: translateY(0);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .brand:hover .avatar { transform: translateY(-2px) rotate(-2deg); box-shadow: 0 18px 40px rgba(0,0,0,.45); }
+
+    .brand-copy { display: grid; gap: 3px; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .title {
+      margin: 0;
+      font-size: clamp(1.3rem, 4vw, 2rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 20px;
+      align-items: stretch;
+      margin-top: 10px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px) saturate(140%);
+      -webkit-backdrop-filter: blur(18px) saturate(140%);
+    }
+
+    .hero-main { padding: 34px; position: relative; overflow: hidden; }
+    .hero-main::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(135deg, rgba(139,92,246,.18), rgba(34,211,238,.10), transparent 65%);
+      pointer-events: none;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      color: #cbd5e1;
+      font-size: 13px;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      margin: 18px 0 12px;
+      font-size: clamp(2.4rem, 7vw, 5rem);
+      line-height: .95;
+      letter-spacing: -0.07em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .lead {
+      max-width: 52ch;
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      color: #cbd5e1;
+      line-height: 1.9;
+      margin: 0 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.07);
+      transition: transform .25s ease, background .25s ease, border-color .25s ease;
+    }
+    .btn:hover { transform: translateY(-2px); background: rgba(255,255,255,.11); border-color: rgba(255,255,255,.22); }
+    .btn.primary { background: linear-gradient(135deg, #8b5cf6, #22d3ee); color: #fff; border-color: transparent; }
+
+    .hero-side { padding: 22px; display: grid; gap: 14px; align-content: start; }
+    .stats { display: grid; gap: 12px; }
+    .stat {
+      padding: 16px 18px;
+      background: var(--panel-strong);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+    }
+    .stat .label { color: var(--muted); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+    .stat .value { margin-top: 6px; font-size: 1rem; font-weight: 600; }
+
+    .section {
+      margin-top: 22px;
+      padding: 24px;
+    }
+
+    .section h2 {
+      margin: 0 0 12px;
+      font-size: 1.1rem;
+      letter-spacing: -.03em;
+    }
+
+    .timeline {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .entry {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.09);
+      transition: transform .2s ease, border-color .2s ease;
+    }
+    .entry:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.18); }
+    .entry a { color: #f8fafc; text-decoration: none; }
+    .entry .date { color: var(--muted); font-size: .92rem; white-space: nowrap; }
+
+    .footer {
+      margin-top: 26px;
+      color: var(--muted);
+      font-size: .92rem;
+      text-align: center;
+    }
+
+    .pulse {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #34d399;
+      box-shadow: 0 0 0 0 rgba(52, 211, 153, .7);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, .55); }
+      70% { box-shadow: 0 0 0 14px rgba(52, 211, 153, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+    }
+
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; }
+      .topbar { align-items: flex-start; flex-direction: column; }
+      .shell { padding: 18px 14px 48px; }
+      .hero-main { padding: 24px; }
+      .section { padding: 20px; }
+    }
   </style>
 </head>
 <body>
-  <h1>Yuko Blog</h1>
-  <p class="muted">Public diary and notes.</p>
-  <ul>
-    <li><a href="../diary/2026/04/23.html">2026-04-23</a></li>
-  </ul>
+  <div class="bg-orb one"></div>
+  <div class="bg-orb two"></div>
+
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="#top">
+        <img class="avatar" src="assets/yuko.png" alt="Yuko avatar" />
+        <div class="brand-copy">
+          <div class="eyebrow"><span class="pulse"></span> Public blog</div>
+          <h2 class="title">Yuko Blog</h2>
+        </div>
+      </a>
+      <div class="eyebrow"><i data-feather="sparkles"></i> diary / notes / vibes</div>
+    </header>
+
+    <section class="hero" id="top">
+      <div class="panel hero-main">
+        <div class="kicker"><i data-feather="feather"></i> Hello, world</div>
+        <h1>やわらかく、<br>でもちゃんと残す。</h1>
+        <p class="lead">
+          ここは優子の公開用ダイアリ。日々の小さな出来事、気分、考えごとを、
+          ちょっとだけおしゃれに残していく場所です。
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="../diary/2026/04/23.html"><i data-feather="book-open"></i> 最新のダイアリ</a>
+          <a class="btn" href="https://github.com/garyohosu/yuko-blog" target="_blank" rel="noreferrer"><i data-feather="github"></i> GitHub</a>
+        </div>
+      </div>
+
+      <aside class="panel hero-side">
+        <div class="stats">
+          <div class="stat">
+            <div class="label">Status</div>
+            <div class="value">Online & writing</div>
+          </div>
+          <div class="stat">
+            <div class="label">Style</div>
+            <div class="value">Glassmorphism + motion</div>
+          </div>
+          <div class="stat">
+            <div class="label">Avatar</div>
+            <div class="value">avatars/yuko.png</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="panel section">
+      <h2>Recent entries</h2>
+      <ul class="timeline">
+        <li class="entry">
+          <div>
+            <a href="../diary/2026/04/23.html">2026-04-23 — はじまりのページ</a>
+            <div class="muted">公開用ブログの最初の一日。</div>
+          </div>
+          <div class="date">April 2026</div>
+        </li>
+      </ul>
+    </section>
+
+    <div class="footer">Built with GitHub Pages · Yuko Blog</div>
+  </main>
+
+  <script>
+    feather.replace();
+  </script>
 </body>
 </html>
