@@ -3,5 +3,6 @@ description: A soft, feminine public diary by Yuko.
 lang: ja
 markdown: kramdown
 permalink: /:year/:month/:day/:title/
+source: docs
 plugins:
   - jekyll-feed
