@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Yuko well done face">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e9d5ff"/>
+      <stop offset="100%" stop-color="#c4b5fd"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <circle cx="256" cy="266" r="150" fill="#fff7fb" opacity="0.95"/>
+  <path d="M193 229l16 18 24-34" fill="none" stroke="#5b2b45" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M305 229l16 18 24-34" fill="none" stroke="#5b2b45" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M210 304c18 26 36 38 46 38s28-12 46-38" fill="none" stroke="#7c3aed" stroke-width="14" stroke-linecap="round"/>
+  <circle cx="162" cy="276" r="18" fill="#d8b4fe" opacity="0.55"/>
+  <circle cx="350" cy="276" r="18" fill="#d8b4fe" opacity="0.55"/>
+  <path d="M170 176c20-16 40-24 56-26" fill="none" stroke="#7c3aed" stroke-width="12" stroke-linecap="round"/>
+  <path d="M342 176c-20-16-40-24-56-26" fill="none" stroke="#7c3aed" stroke-width="12" stroke-linecap="round"/>
+</svg>

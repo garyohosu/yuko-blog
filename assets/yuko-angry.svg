@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Yuko angry face">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffe4e6"/>
+      <stop offset="100%" stop-color="#fecdd3"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <circle cx="256" cy="266" r="150" fill="#fff7fb" opacity="0.95"/>
+  <path d="M178 214l38-18" stroke="#5b2b45" stroke-width="14" stroke-linecap="round"/>
+  <path d="M334 214l-38-18" stroke="#5b2b45" stroke-width="14" stroke-linecap="round"/>
+  <circle cx="202" cy="230" r="16" fill="#5b2b45"/>
+  <circle cx="310" cy="230" r="16" fill="#5b2b45"/>
+  <path d="M206 316c14-18 30-26 50-26s36 8 50 26" fill="none" stroke="#b4235f" stroke-width="14" stroke-linecap="round"/>
+  <circle cx="162" cy="276" r="20" fill="#ff8aa8" opacity="0.4"/>
+  <circle cx="350" cy="276" r="20" fill="#ff8aa8" opacity="0.4"/>
+</svg>
